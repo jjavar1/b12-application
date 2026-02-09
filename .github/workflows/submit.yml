@@ -1,0 +1,27 @@
+name: B12 submission
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: run submit
+        env:
+          B12_NAME: ${{ secrets.B12_NAME }}
+          B12_EMAIL: ${{ secrets.B12_EMAIL }}
+          B12_RESUME_LINK: ${{ secrets.B12_RESUME_LINK }}
+          B12_SIGNING_SECRET: ${{ secrets.B12_SIGNING_SECRET }}
+        run: python submit.py
