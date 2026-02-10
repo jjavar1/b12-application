@@ -25,6 +25,7 @@ jobs:
           B12_RESUME_LINK: ${{ secrets.B12_RESUME_LINK }}
           B12_SIGNING_SECRET: ${{ secrets.B12_SIGNING_SECRET }}
         run: python submit.py
+      - name: debug
         run: |
           ls -la
           python submit.py
